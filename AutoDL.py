@@ -221,6 +221,7 @@ if CB:
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
                 matrix = confusion_matrix(y_train, y_pred_train)
+		st.write('Confusion matrix:')
                 st.write(matrix)
 
                 # Test set
@@ -241,6 +242,7 @@ if CB:
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
                 matrix = confusion_matrix(y_test, y_pred_test)
+		st.write('Confusion matrix:')
                 st.write(matrix)
 
                 st.success("**Find the Predicted Results below: **")
