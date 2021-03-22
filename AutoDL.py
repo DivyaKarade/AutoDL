@@ -220,8 +220,7 @@ if CB:
                 auc = roc_auc_score(y_train, y_pred_train)
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
-		st.write("Confusion matrix")
-                matrix = confusion_matrix(y_train, y_pred_train)
+                matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
 
                 # Test set
@@ -241,7 +240,6 @@ if CB:
                 auc = roc_auc_score(y_test, y_pred_test)
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
-		st.write("Confusion matrix")
                 matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
 
