@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="#AIDrugApp">AIDrugApp</a> •
-  <a href="#Use">Use</a>
+  <a href="#AutoDL">AutoDL</a>
 </p>
 
 
@@ -32,9 +32,9 @@ For citation - [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artif
 > Karade, Divya; Karade, Vikas (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1; https://doi.org/10.26434/chemrxiv.13312661.v1 
 
 
-## Use
+## AutoDL
 
-###How to use Auto-DL?
+### How to use Auto-DL?
 
 <b>Step 1:</b> On the "User Input Panel" first select AutoDL algorithm for building Deep Learning models
 
