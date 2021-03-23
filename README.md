@@ -1,7 +1,5 @@
-# AutoDL
-
 <h1 align="center">
-  AIDrugApp
+  AutoDL
 </h1>
 
 <p align="center">
