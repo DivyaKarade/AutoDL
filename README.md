@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="#AIDrugApp">AIDrugApp</a> •
-  <a href="#how to use">How to use Auto-DL?</a>
+  <a href="#How to use Auto-DL?">How to use Auto-DL?</a>
 </p>
 
 ## AIDrugApp
