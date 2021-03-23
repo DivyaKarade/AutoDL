@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-    <b>Auto-DL</b> is Automated Deep Learning which is one of the machine learning module of <b>AIDrugApp v1.2</b>. It helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data.It also helps to predict target data based on user specific deep learning algorithm.
+    <b>Auto-DL</b> or Automated Deep Learning which is one of the machine learning module of <b>AIDrugApp v1.2</b>. It helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data.It also helps to predict target data based on user specific deep learning algorithm.
 </p>
 
 <p align="center">
