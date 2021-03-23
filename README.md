@@ -10,7 +10,7 @@
   </a>
 
   <a href="https://zenodo.org/record/4630119#.YFnrc68zbIU">
-    <img src="https://zenodo.org/badge/4630119.svg" alt="DOI">
+    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4630119.svg" alt="DOI">
   </a>
 
 </p>
