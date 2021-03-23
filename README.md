@@ -33,6 +33,7 @@ For citation - [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artif
 
 
 ## AutoDL
+AutoDL can be access from [here](https://share.streamlit.io/divyakarade/autodl/main/AutoDL.py)
 
 ### How to use Auto-DL?
 
