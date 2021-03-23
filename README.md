@@ -9,7 +9,7 @@
     <img src='https://img.shields.io/badge/License-LGPL%202.1-blue.svg' alt='License'/>
   </a>
 
-  <a href="https://zenodo.org/badge/latestdoi/4630119">
+  <a href="https://zenodo.org/record/4630119#.YFnrc68zbIU">
     <img src="https://zenodo.org/badge/4630119.svg" alt="DOI">
   </a>
 
@@ -34,12 +34,12 @@ For citation: [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artifi
 
 
 ## How to use Auto-DL?
-<b>Step 1:<b> On the "User Input Panel" first select AutoDL algorithm for building Deep Learning models
+<b>Step 1:</b> On the "User Input Panel" first select AutoDL algorithm for building Deep Learning models
 
-<b>Step 2:<b> Upload data (included with target data) for building deep learning model (Example input file given)
+<b>Step 2:</b> Upload data (included with target data) for building deep learning model (Example input file given)
 
-<b>Step 3:<b> Specify the parameters for DL model building
+<b>Step 3:</b> Specify the parameters for DL model building
 
-<b>Step 4:<b> Upload data (excluded with target data) for making target predictions (Example input file given)
+<b>Step 4:</b> Upload data (excluded with target data) for making target predictions (Example input file given)
 
-<b>Step 5:<b> Click the "Predict" button and the results will be displayed below
+<b>Step 5:</b> Click the "Predict" button and the results will be displayed below
