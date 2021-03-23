@@ -205,8 +205,6 @@ if CB:
                 plt.grid(False)
                 st.pyplot()
 
-                # prediction = pd.DataFrame(prediction, columns=['predictions']).to_csv('cas_2_prediction.csv')
-
                 # Training set
                 st.info('**Model evaluation**')
                 st.write('**Training Set**')
@@ -284,9 +282,6 @@ if CB:
                 sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
 
                 tf.compat.v1.keras.backend.set_session(sess)
-
-                # X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.30, shuffle=True, random_state=2)
-                # X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=split_size,random_state=seed_number)
 
                 # define the search
                 search = StructuredDataRegressor(max_trials=max_trials)
