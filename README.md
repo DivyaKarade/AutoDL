@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="#AIDrugApp">AIDrugApp</a> •
-  <a href="#HowtouseAuto-DL?">How to use Auto-DL?</a>
+  <a href="#How to use Auto-DL?">How to use Auto-DL?</a>
 </p>
 
 ## AIDrugApp
@@ -32,6 +32,7 @@ For citation: [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artifi
 
 
 ## How to use Auto-DL?
+
 <b>Step 1:</b> On the "User Input Panel" first select AutoDL algorithm for building Deep Learning models
 
 <b>Step 2:</b> Upload data (included with target data) for building deep learning model (Example input file given)
