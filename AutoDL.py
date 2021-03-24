@@ -45,7 +45,6 @@ if CB:
     * **Publications:** Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
     """)
 
-    # expander_bar = st.beta_expander("👉 More information")
     expander_bar = st.beta_expander("👉 How to use Auto-DL?")
     expander_bar.markdown("""
                     **Step 1:** On the "User Input Panel" first select AutoDL algorithm for building Deep Learning  models
@@ -177,9 +176,6 @@ if CB:
                 sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
 
                 tf.compat.v1.keras.backend.set_session(sess)
-
-                # X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.30, shuffle=True, random_state=2)
-                # X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=split_size,random_state=seed_number)
 
                 # define the search
                 search = StructuredDataClassifier(max_trials=max_trials)
