@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-    <b>Auto-DL</b> or Automated Deep Learning which is one of the machine learning module of <b>AIDrugApp v1.2</b>.
+    <b>Auto-DL</b> or Automated Deep Learning : Machine learning module of <b>AIDrugApp v1.2</b>.
 </p>
 
 <p align="center">
