@@ -35,7 +35,7 @@ For citation - [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artif
 ## AutoDL
 Auto-DL or Automated Deep Learning is one of the machine learning module of <b>AIDrugApp v1.2</b>. It helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data.It also helps to predict target data based on user specific deep learning algorithm.
 
-AutoDL can be access from here 👉 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/divyakarade/autodl/main/AutoDL.py)
+AutoDL can be launched from here 👉 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/divyakarade/autodl/main/AutoDL.py)
 
 ### How to use Auto-DL?
 
