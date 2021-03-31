@@ -36,7 +36,7 @@ CB = st.sidebar.checkbox("Auto-DL")
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2**](https://sars-covid-app.herokuapp.com/) helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data."
+        "This module of [**AIDrugApp v1.2.1**](https://sars-covid-app.herokuapp.com/) helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data."
         " It also helps to predict target data based on user specific deep learning algorithm.")
 
     expander_bar = st.beta_expander("👉 More information")
@@ -59,7 +59,7 @@ if CB:
                     **Step 4:** Upload data (excluded with target data) for making target predictions (*Example input file given*)
                     """)
     expander_bar.markdown("""
-                    **Step 5:** Click the "Predict" button and the results will be displayed below
+                    **Step 5:** Click the "✨ PREDICT" button and the results will be displayed below
                     """)
 
     """---"""
@@ -99,7 +99,7 @@ if CB:
     else:
         st.info('Awaiting .csv file to be uploaded for making predictions')
 
-    DA = st.sidebar.button("PREDICT")
+    DA = st.sidebar.button("✨ PREDICT")
 
     # Load dataset
     if uploaded_file is not None:
