@@ -10,8 +10,6 @@
   <a href="https://zenodo.org/record/4630119#.YFnrc68zbIU">
     <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4630119.svg" alt="DOI">
   </a>
-  
-  <a href='https://divyakarade.github.io/index.html'><img src='https://img.shields.io/badge/Profile-DivyaKarade-blue.svg' alt='License'/></a>
 
 </p>
 
