@@ -29,7 +29,8 @@
 ### Citation
 For citation - [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artificial_Intelligence-based_Web-App_for_Virtual_Screening_of_Inhibitors_against_SARS-COV-2/13312661/1): 
 
-> Karade, Divya; Karade, Vikas (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1; https://doi.org/10.26434/chemrxiv.13312661.v1 
+> Divya Karade; Vikas Karade (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1; https://doi.org/10.26434/chemrxiv.13312661.v1 
+> Divya Karade. (2021). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). *Zenodo* (http://doi.org/10.5281/zenodo.4630119)
 
 
 ## AutoDL
