@@ -79,7 +79,7 @@ if CB:
     st.sidebar.write('**3. Set Parameters**')
     split_size = st.sidebar.number_input('Train-Test split %', 0, 100, 70, 5)
     seed_number = st.sidebar.number_input('Set the random seed number', 1, 100, 42, 1)
-    max_trials = st.sidebar.number_input('Set the maximum trail number', 1, 100, 15, 1)
+    max_trials = st.sidebar.number_input('Set the maximum trial number', 1, 100, 15, 1)
     epochs = st.sidebar.number_input('Set the epochs number', 1, 1000, 50, 5)
 
     st.sidebar.write("**4. Upload data file for predictions: **")
