@@ -39,13 +39,13 @@ if CB:
         "This module of [**AIDrugApp v1.2.1**](https://sars-covid-app.herokuapp.com/) helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data."
         " It also helps to predict target data based on user specific deep learning algorithm.")
 
-    expander_bar = st.beta_expander("👉 More information")
+    expander_bar = st.beta_expander("👉 **More information**")
     expander_bar.markdown("""
     * **Python libraries:** tensorflow, autokeras, scikit-learn, streamlit, pandas, numpy, base64, matplotlib
     * **Publications:** Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
     """)
 
-    expander_bar = st.beta_expander("👉 How to use Auto-DL?")
+    expander_bar = st.beta_expander("👉 **How to use Auto-DL?**")
     expander_bar.markdown("""
                     **Step 1:** On the "User Input Panel" first select AutoDL algorithm for building Deep Learning  models
                     """)
