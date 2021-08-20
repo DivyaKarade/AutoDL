@@ -29,22 +29,18 @@ html_temp = """
 		"""
 st.markdown(html_temp, unsafe_allow_html=True)
 
-st.sidebar.title("AIDrugApp v1.2.1")
+st.sidebar.title("AIDrugApp v1.2")
 st.sidebar.header("Menu")
 CB = st.sidebar.checkbox("Auto-DL")
 
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2.1**](https://sars-covid-app.herokuapp.com/) helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data."
-        " It also helps to predict target data based on user specific deep learning algorithm.")
+        "This module of **AIDrugApp v1.2** helps to create easy to use and best Deep Learning (DL) model with neural "
+        "networks on users data. "
+        "It also helps to predict target data based on user specific deep learning algorithm.")
 
-    expander_bar = st.beta_expander("👉 More information")
-    expander_bar.markdown("""
-    * **Python libraries:** tensorflow, autokeras, scikit-learn, streamlit, pandas, numpy, base64, matplotlib
-    * **Publications:** Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
-    """)
-
+    # expander_bar = st.beta_expander("👉 More information")
     expander_bar = st.beta_expander("👉 How to use Auto-DL?")
     expander_bar.markdown("""
                     **Step 1:** On the "User Input Panel" first select AutoDL algorithm for building Deep Learning  models
@@ -59,7 +55,7 @@ if CB:
                     **Step 4:** Upload data (excluded with target data) for making target predictions (*Example input file given*)
                     """)
     expander_bar.markdown("""
-                    **Step 5:** Click the "✨ PREDICT" button and the results will be displayed below
+                    **Step 5:** Click the "Predict" button and the results will be displayed below
                     """)
 
     """---"""
@@ -77,10 +73,10 @@ if CB:
 
     # Sidebar - Specify parameter settings
     st.sidebar.write('**3. Set Parameters**')
-    split_size = st.sidebar.number_input('Train-Test split %', 0, 100, 70, 5)
-    seed_number = st.sidebar.number_input('Set the random seed number', 1, 100, 42, 1)
-    max_trials = st.sidebar.number_input('Set the maximum trial number', 1, 100, 15, 1)
-    epochs = st.sidebar.number_input('Set the epochs number', 1, 1000, 50, 5)
+    split_size = st.sidebar.slider('Train-Test split %', 0, 100, 70, 5)
+    seed_number = st.sidebar.slider('Set the random seed number', 1, 100, 42, 1)
+    max_trials = st.sidebar.slider('Set the maximum trail number', 1, 100, 15, 1)
+    epochs = st.sidebar.slider('Set the epochs number', 1, 1000, 50, 5)
 
     st.sidebar.write("**4. Upload data file for predictions: **")
     file_upload = st.sidebar.file_uploader("Upload .csv file", type=["csv"])
@@ -99,7 +95,7 @@ if CB:
     else:
         st.info('Awaiting .csv file to be uploaded for making predictions')
 
-    DA = st.sidebar.button("✨ PREDICT")
+    DA = st.sidebar.button("PREDICT")
 
     # Load dataset
     if uploaded_file is not None:
@@ -177,6 +173,9 @@ if CB:
 
                 tf.compat.v1.keras.backend.set_session(sess)
 
+                # X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.30, shuffle=True, random_state=2)
+                # X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=split_size,random_state=seed_number)
+
                 # define the search
                 search = StructuredDataClassifier(max_trials=max_trials)
                 # perform the search
@@ -201,6 +200,8 @@ if CB:
                 plt.grid(False)
                 st.pyplot()
 
+                # prediction = pd.DataFrame(prediction, columns=['predictions']).to_csv('cas_2_prediction.csv')
+
                 # Training set
                 st.info('**Model evaluation**')
                 st.write('**Training Set**')
@@ -220,7 +221,6 @@ if CB:
                 auc = roc_auc_score(y_train, y_pred_train)
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
-                st.write("Confusion matrix")
                 matrix = confusion_matrix(y_train, y_pred_train)
                 st.write(matrix)
 
@@ -241,7 +241,6 @@ if CB:
                 auc = roc_auc_score(y_test, y_pred_test)
                 st.write('ROC AUC: %f' % auc)
                 # confusion matrix
-                st.write("Confusion matrix")
                 matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
 
@@ -278,6 +277,9 @@ if CB:
                 sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
 
                 tf.compat.v1.keras.backend.set_session(sess)
+
+                # X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.30, shuffle=True, random_state=2)
+                # X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=split_size,random_state=seed_number)
 
                 # define the search
                 search = StructuredDataRegressor(max_trials=max_trials)
