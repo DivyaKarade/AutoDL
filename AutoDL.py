@@ -89,7 +89,7 @@ if CB:
     if file_upload is not None:
         data = pd.read_csv(file_upload)
         # data1 = data.dropna()
-        features = data.iloc[:, 0:100]
+        features = data.iloc[:, 0:]
         X = features
 
         st.info("**Uploaded data for making predictions **")
