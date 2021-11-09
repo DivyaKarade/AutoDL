@@ -39,7 +39,7 @@ if CB:
         "This module of [**AIDrugApp v1.2.3**](https://sars-covid-app.herokuapp.com/) helps to build best Deep Learning model on users data."
         " It also helps to predict target data using same deep learning algorithm.")
 
-    expander_bar = st.beta_expander("👉 More information")
+    expander_bar = st.expander("👉 More information")
     expander_bar.markdown("""
             * **Python libraries:** Tensorflow, AutoKeras, scikit-learn, streamlit, pandas, numpy, matplotlib
             * **Publication:** 1. Divya Karade. (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. [ChemRxiv Preprint] (https://doi.org/10.33774/chemrxiv-2021-3f1f9).
