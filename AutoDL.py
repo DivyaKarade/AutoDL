@@ -36,31 +36,22 @@ CB = st.sidebar.checkbox("Auto-DL")
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2.3**](https://sars-covid-app.herokuapp.com/) helps to create an easy to use and best Deep Learning (DL) model with neural networks on users data."
-        " It also helps to predict target data based on user specific deep learning algorithm.")
+        "This module of [**AIDrugApp v1.2.3**](https://sars-covid-app.herokuapp.com/) helps to build best Deep Learning model on users data."
+        " It also helps to predict target data using same deep learning algorithm.")
 
     expander_bar = st.beta_expander("👉 More information")
     expander_bar.markdown("""
-    * **Python libraries:** tensorflow, autokeras, scikit-learn, streamlit, pandas, numpy, base64, matplotlib
-    * **Publications:** Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
-    """)
+            * **Python libraries:** Tensorflow, AutoKeras, scikit-learn, streamlit, pandas, numpy, matplotlib
+            * **Publication:** 1. Divya Karade. (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. [ChemRxiv Preprint] (https://doi.org/10.33774/chemrxiv-2021-3f1f9).
+            2. Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
+            """)
 
-    expander_bar = st.beta_expander("👉 How to use Auto-DL?")
-    expander_bar.markdown("""
-                    **Step 1:** On the "User Input Panel" first select AutoDL algorithm for building Deep Learning  models
-                    """)
-    expander_bar.markdown("""
-                    **Step 2:** Upload data (included with target data) for building deep learning model (*Example input file given*)
-                    """)
-    expander_bar.markdown("""
-                    **Step 3:** Specify the parameters for DL model building
-                        """)
-    expander_bar.markdown("""
-                    **Step 4:** Upload data (excluded with target data) for making target predictions (*Example input file given*)
-                    """)
-    expander_bar.markdown("""
-                    **Step 5:** Click the "✨ PREDICT" button and the results will be displayed below
-                    """)
+    expander_bar = st.expander("👉 How to use Auto-DL?")
+    expander_bar.markdown("""**Step 1:** In the User input-side panel, select the type of algorithm ('Classification' or 'Regression') for building the DL model.""")
+    expander_bar.markdown("""**Step 2:** Upload descriptor data (included with target data) for building DL model. (*Example input file given*)""")
+    expander_bar.markdown("""**Step 3:** For developing the model, specify parameters such as 'Train-Test split percent', 'random seed number', 'maximum trial number', and 'epochs number'.""")
+    expander_bar.markdown("""**Step 4:** Upload descriptor data (excluded with target data) for making target predictions. (*Example input file provided*)""")
+    expander_bar.markdown("""**Step 5:** Click the "✨ PREDICT" button and the results will be displayed below to view and download.""")
 
     """---"""
 
@@ -130,17 +121,7 @@ if CB:
         Train = pd.concat(frames1, axis=1)
         st.write('Data Dimension: ' + str(Train.shape[0]) + ' rows and ' + str(Train.shape[1]) + ' columns.')
         st.write(Train)
-
-
-        # Download predicted data
-        def filedownload(df):
-            csv = df.to_csv(index=False)
-            b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-            href = f'<a href="data:file/csv;base64,{b64}" download="Train.csv">⏬ Download CSV File</a>'
-            return href
-
-
-        st.markdown(filedownload(Train), unsafe_allow_html=True)
+        st.download_button('Download CSV', Train.to_csv(), 'Train.csv', 'text/csv')
 
         st.write('**Test set**')
         df3 = pd.DataFrame(X_test)
@@ -149,17 +130,7 @@ if CB:
         Test = pd.concat(frames2, axis=1)
         st.write('Data Dimension: ' + str(Test.shape[0]) + ' rows and ' + str(Test.shape[1]) + ' columns.')
         st.write(Test)
-
-
-        # Download predicted data
-        def filedownload(df):
-            csv = df.to_csv(index=False)
-            b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-            href = f'<a href="data:file/csv;base64,{b64}" download="Test.csv">⏬ Download CSV File</a>'
-            return href
-
-
-        st.markdown(filedownload(Test), unsafe_allow_html=True)
+        st.download_button('Download CSV', Test.to_csv(), 'Test.csv', 'text/csv')
 
         if add_selectbox == 'Classification':
             if DA:
@@ -249,17 +220,7 @@ if CB:
                 prediction = search.predict(data)
                 data['Target_value'] = prediction
                 st.write(data)
-
-
-                # Download predicted data
-                def filedownload(df):
-                    csv = df.to_csv(index=False)
-                    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-                    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">⏬ Download CSV File</a>'
-                    return href
-
-
-                st.markdown(filedownload(data), unsafe_allow_html=True)
+                st.download_button('Download CSV', data.to_csv(), 'data.csv', 'text/csv')
 
                 st.sidebar.warning('Prediction Created Sucessfully!')
 
@@ -336,16 +297,6 @@ if CB:
                 prediction = search.predict(data)
                 data['Target_value'] = prediction
                 st.write(data)
-
-
-                # Download predicted data
-                def filedownload(df):
-                    csv = df.to_csv(index=False)
-                    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-                    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">⏬ Download CSV File</a>'
-                    return href
-
-
-                st.markdown(filedownload(data), unsafe_allow_html=True)
+                st.download_button('Download CSV', data.to_csv(), 'data.csv', 'text/csv')
 
                 st.sidebar.warning('Prediction Created Sucessfully!')
