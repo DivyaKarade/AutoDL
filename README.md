@@ -10,6 +10,10 @@
   <a href="https://zenodo.org/record/4630119#.YFnrc68zbIU">
     <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4630119.svg" alt="DOI">
   </a>
+  
+  <a href="https://doi.org/10.33774/chemrxiv-2021-3f1f9">
+    <img src="https://img.shields.io/badge/DOI-10.33774-blue.svg?logo=10.33774" alt="DOI">
+  </a>
 
 </p>
 
@@ -31,9 +35,9 @@ For citation:
 
 > 1. Divya Karade (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. *ChemRxiv* Cambridge: Cambridge Open Engage; 2021. (https://doi.org/10.33774/chemrxiv-2021-3f1f9)
 
-> 1. Divya Karade; Vikas Karade (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1 (https://doi.org/10.26434/chemrxiv.13312661.v1)
+> 2. Divya Karade; Vikas Karade (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1 (https://doi.org/10.26434/chemrxiv.13312661.v1)
 
-> 2. Divya Karade. (2021). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). *Zenodo* (http://doi.org/10.5281/zenodo.4630119)
+> 3. Divya Karade. (2021). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). *Zenodo* (http://doi.org/10.5281/zenodo.4630119)
 
 
 ## AutoDL
