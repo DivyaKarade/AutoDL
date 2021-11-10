@@ -27,9 +27,11 @@
 [AIDrugApp](https://sars-covid-app.herokuapp.com/) is a National award-winning novel, open-access, deep learning AI-based web application for drug discovery. The goal is to use AI/ML and cloud technology to develop a platform where multiple experts around the world can collaborate in drug discovery research, aiming to speed up and improve the process, especially in emergent situations like the COVID-19 pandemic. The current version 1.2 is for virtual screening of inhibitor molecules through deep learning AI models and a data statistical visualization platform towards SARS-CoV-2. It is also useful for Exploratory Data Analysis (EDA) and feature engineering of user - specific data for building Automated Multiple Machine Learning Models (Auto-Multi-ML) which can eventually be used for predicting/virtual screening of target data. We have also included Automated Deep Learning Module (Auto-DL) in the AIDrugApp, where users can build best deep learning models for prediction of target data. Users can also store and use available data from the repository section for drug discovery research. The future versions will include a collaborative networking platform with advanced features for many other diseases.
 
 ### Citation
-For citation - [preprint](https://chemrxiv.org/articles/preprint/AIDrugApp_Artificial_Intelligence-based_Web-App_for_Virtual_Screening_of_Inhibitors_against_SARS-COV-2/13312661/1): 
+For citation: 
 
-> 1. Divya Karade; Vikas Karade (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1; https://doi.org/10.26434/chemrxiv.13312661.v1 
+> 1. Divya Karade (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. *ChemRxiv* Cambridge: Cambridge Open Engage; 2021. (https://doi.org/10.33774/chemrxiv-2021-3f1f9)
+
+> 1. Divya Karade; Vikas Karade (2020). AIDrugApp: Artificial Intelligence-based Web-App for Virtual Screening of Inhibitors against SARS-COV-2. *ChemRxiv* 13312661.v1 (https://doi.org/10.26434/chemrxiv.13312661.v1)
 
 > 2. Divya Karade. (2021). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). *Zenodo* (http://doi.org/10.5281/zenodo.4630119)
 
