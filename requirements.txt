@@ -2,7 +2,7 @@ streamlit==1.1.0
 matplotlib==3.3.4
 autokeras
 scikit-learn==0.24.1
-keras-tuner==1.0.2
+keras-tuner
 pandas==1.2.3
 
 
