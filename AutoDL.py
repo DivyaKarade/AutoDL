@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import autokeras
 from autokeras import StructuredDataClassifier, StructuredDataRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, roc_auc_score, f1_score, confusion_matrix
