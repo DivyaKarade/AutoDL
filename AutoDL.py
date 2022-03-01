@@ -56,7 +56,7 @@ if CB:
 
     """---"""
 
-    st.sidebar.subheader('⚙ User Input Panel')
+    st.sidebar.header('⚙️ USER INPUT PANEL')
     st.sidebar.write('**1. Which Auto-DL algorithm would you like to select for building DL models?**')
     add_selectbox = st.sidebar.radio(
         "Select your algorithm",
