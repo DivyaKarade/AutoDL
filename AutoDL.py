@@ -30,14 +30,14 @@ html_temp = """
 		"""
 st.markdown(html_temp, unsafe_allow_html=True)
 
-st.sidebar.title("AIDrugApp v1.2.4")
+st.sidebar.title("AIDrugApp v1.2.5")
 st.sidebar.header("Menu")
 CB = st.sidebar.checkbox("Auto-DL")
 
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2.4**](https://sars-covid-app.herokuapp.com/) helps to build best Deep Learning model on users data."
+        "This module of [**AIDrugApp v1.2.5**](https://sars-covid-app.herokuapp.com/) helps to build best Deep Learning model on users data."
         " It also helps to predict target data using same deep learning algorithm.")
 
     expander_bar = st.expander("👉 More information")
