@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 import autokeras
-from autokeras import StructuredDataClassifier, StructuredDataRegressor
+from autokeras import ImageClassifier, ImageRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, roc_auc_score, f1_score, confusion_matrix
 import sklearn.metrics
@@ -16,18 +15,18 @@ import math
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
 
-# For hiding streamlite messages
+# For hiding streamlit messages
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Create title and subtitle
 html_temp = """
-		<div style="background-color:teal">
-		<h1 style="font-family:arial;color:white;text-align:center;">AIDrugApp</h1>
-		<h4 style="font-family:arial;color:white;text-align:center;">Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery</h4>
-		</div>
-		<br>
-		"""
+        <div style="background-color:teal">
+        <h1 style="font-family:arial;color:white;text-align:center;">AIDrugApp</h1>
+        <h4 style="font-family:arial;color:white;text-align:center;">Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery</h4>
+        </div>
+        <br>
+        """
 st.markdown(html_temp, unsafe_allow_html=True)
 
 st.sidebar.title("AIDrugApp v1.2.5")
@@ -80,10 +79,6 @@ if CB:
                                                                             """)
     if file_upload is not None:
         data = pd.read_csv(file_upload)
-        # data1 = data.dropna()
-        features = data.iloc[:, 0:]
-        X = features
-
         st.info("**Uploaded data for making predictions **")
         st.write('Data Dimension: ' + str(data.shape[0]) + ' rows and ' + str(data.shape[1]) + ' columns.')
         st.write(data.style.highlight_max(axis=0))
@@ -96,13 +91,9 @@ if CB:
     # Load dataset
     if uploaded_file is not None:
         data_1 = pd.read_csv(uploaded_file)
-        # data_1 = data_1.loc[:10000]  # FOR TESTING PURPOSE, COMMENT THIS OUT FOR PRODUCTION
         X = data_1.iloc[:, :-1]  # Using all column except for the last column as X
         Y = data_1.iloc[:, -1]  # Selecting the last column as Y
-        # labels = data_1['Activity_value']
-        # features = data_1.iloc[:, 0:8]
-        # X = features
-        # y = np.ravel(labels)
+
         st.info("**Uploaded data for building DL models: **")
         st.write('Data Dimension: ' + str(data_1.shape[0]) + ' rows and ' + str(data_1.shape[1]) + ' columns.')
         st.write(data_1.style.highlight_max(axis=0))
@@ -112,23 +103,13 @@ if CB:
                                                             random_state=seed_number)
 
         st.write('**Training set**')
-        df1 = pd.DataFrame(X_train)
-        # data_1 = data_1.loc[:1000]  # FOR TESTING PURPOSE, COMMENT THIS OUT FOR PRODUCTION
-
-        df2 = pd.DataFrame(y_train)
-        # data_1 = data_1.loc[:1000]  # FOR TESTING PURPOSE, COMMENT THIS OUT FOR PRODUCTION
-
-        frames1 = [df1, df2]
-        Train = pd.concat(frames1, axis=1)
+        Train = pd.concat([X_train, y_train], axis=1)
         st.write('Data Dimension: ' + str(Train.shape[0]) + ' rows and ' + str(Train.shape[1]) + ' columns.')
         st.write(Train)
         st.download_button('Download CSV', Train.to_csv(), 'Train.csv', 'text/csv')
 
         st.write('**Test set**')
-        df3 = pd.DataFrame(X_test)
-        df4 = pd.DataFrame(y_test)
-        frames2 = [df3, df4]
-        Test = pd.concat(frames2, axis=1)
+        Test = pd.concat([X_test, y_test], axis=1)
         st.write('Data Dimension: ' + str(Test.shape[0]) + ' rows and ' + str(Test.shape[1]) + ' columns.')
         st.write(Test)
         st.download_button('Download CSV', Test.to_csv(), 'Test.csv', 'text/csv')
@@ -137,82 +118,45 @@ if CB:
             if DA:
                 seed(2)
                 tf.random.set_seed(2)
-                # set the seeds for reproducible results with TF (wont work with GPU, only CPU)
                 np.random.seed(2)
 
-                session_conf = tf.compat.v1.ConfigProto(
-                    intra_op_parallelism_threads=1,
-                    inter_op_parallelism_threads=1)
-
-                # Force Tensorflow to use a single thread
-                sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
-
-                tf.compat.v1.keras.backend.set_session(sess)
-
-                # define the search
-                search = StructuredDataClassifier(max_trials=max_trials)
-                # perform the search
+                search = ImageClassifier(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
                 y_pred_train = search.predict(X_train)
                 y_pred_test = search.predict(X_test)
 
-                # get the best performing model
                 model = search.export_model()
 
-                # Model summary
-                s = io.StringIO()
-                model.summary(print_fn=lambda x: s.write(x + '\n'))
-                model_summary = s.getvalue()
-                s.close()
-
-                print("The model summary is:\n\n{}".format(model_summary))
                 st.info('**Model summary**')
-                plt.text(0.1, 0.1, model_summary)
-                plt.setp(plt.gca(), frame_on=False, xticks=(), yticks=())
-                plt.grid(False)
-                st.pyplot()
+                st.write(model.summary())
 
-                # Training set
-                st.info('**Model evaluation**')
-                st.write('**Training Set**')
-                # evaluate the model
+                st.info('**Model evaluation - Training Set**')
                 loss, acc = search.evaluate(X_train, y_train, verbose=0)
                 st.write('Accuracy: %.3f' % acc)
-                # precision tp / (tp + fp)
                 precision = precision_score(y_train, y_pred_train)
                 st.write('Precision: %f' % precision)
-                # recall: tp / (tp + fn)
                 recall = recall_score(y_train, y_pred_train)
                 st.write('Sensitivity/Recall: %f' % recall)
-                # f1: 2 tp / (2 tp + fp + fn)
                 f1 = f1_score(y_train, y_pred_train)
                 st.write('F1 score: %f' % f1)
-                # ROC AUC
                 auc = roc_auc_score(y_train, y_pred_train)
                 st.write('ROC AUC: %f' % auc)
-                # confusion matrix
                 st.write("Confusion matrix")
                 matrix = confusion_matrix(y_train, y_pred_train)
                 st.write(matrix)
 
-                # Test set
-                st.write('**Test Set**')
+                st.info('**Model evaluation - Test Set**')
                 loss, acc = search.evaluate(X_test, y_test, verbose=0)
                 st.write('Accuracy: %.3f' % acc)
-                # precision tp / (tp + fp)
                 precision = precision_score(y_test, y_pred_test)
                 st.write('Precision: %f' % precision)
-                # recall: tp / (tp + fn) [Sensitivity/Recall]
                 recall1 = recall_score(y_test, y_pred_test)
-                st.write('Sensitivity/Recall: %f' % recall)
-                # f1: 2 tp / (2 tp + fp + fn)
+                st.write('Sensitivity/Recall: %f' % recall1)
                 f1 = f1_score(y_test, y_pred_test)
                 st.write('F1 score: %f' % f1)
-                # ROC AUC
                 auc = roc_auc_score(y_test, y_pred_test)
                 st.write('ROC AUC: %f' % auc)
-                # confusion matrix
                 st.write("Confusion matrix")
                 matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
@@ -223,57 +167,26 @@ if CB:
                 st.write(data)
                 st.download_button('Download CSV', data.to_csv(), 'data.csv', 'text/csv')
 
-                st.sidebar.warning('Prediction Created Sucessfully!')
+                st.sidebar.warning('Prediction Created Successfully!')
 
         if add_selectbox == 'Regression':
             if DA:
                 seed(2)
                 tf.random.set_seed(2)
-                # set the seeds for reproducible results with TF (wont work with GPU, only CPU)
                 np.random.seed(2)
 
-                session_conf = tf.compat.v1.ConfigProto(
-                    intra_op_parallelism_threads=1,
-                    inter_op_parallelism_threads=1)
-
-                # Force Tensorflow to use a single thread
-                sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
-
-                tf.compat.v1.keras.backend.set_session(sess)
-
-                # define the search
-                search = StructuredDataRegressor(max_trials=max_trials)
-                # perform the search
+                search = ImageRegressor(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
-                # Make a prediction with the neural network
                 y_pred = search.predict(X_test)
-                x_pred = search.predict(X_train)
 
-                # get the best performing model
                 model = search.export_model()
 
-                # Model summary
-                s = io.StringIO()
-                model.summary(print_fn=lambda x: s.write(x + '\n'))
-                model_summary = s.getvalue()
-                s.close()
-
-                print("The model summary is:\n\n{}".format(model_summary))
                 st.info('**Model summary**')
-                plt.text(0.1, 0.1, model_summary)
-                plt.setp(plt.gca(), frame_on=False, xticks=(), yticks=())
-                plt.grid(False)
-                st.pyplot()
+                st.write(model.summary())
 
-                # Training set
-                st.info('**Model evaluation**')
-                st.write('**Training Set**')
-                # evaluate the model
+                st.info('**Model evaluation - Training Set**')
                 mae, _ = search.evaluate(X_train, y_train, verbose=0)
-                # -----------------------------------------------------------------------------
-                # print statistical figures of merit for training set
-                # -----------------------------------------------------------------------------
                 st.write("\n")
                 st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_train, x_pred))
                 st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_train, x_pred))
@@ -281,12 +194,8 @@ if CB:
                     sklearn.metrics.mean_squared_error(y_train, x_pred)))
                 st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_train, x_pred))
 
-                # Test set
-                st.write('**Test Set**')
+                st.info('**Model evaluation - Test Set**')
                 mae, _ = search.evaluate(X_test, y_test, verbose=0)
-                # -----------------------------------------------------------------------------
-                # print statistical figures of merit for test set
-                # -----------------------------------------------------------------------------
                 st.write("\n")
                 st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_test, y_pred))
                 st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_test, y_pred))
@@ -300,4 +209,4 @@ if CB:
                 st.write(data)
                 st.download_button('Download CSV', data.to_csv(), 'data.csv', 'text/csv')
 
-                st.sidebar.warning('Prediction Created Sucessfully!')
+                st.sidebar.warning('Prediction Created Successfully!')
