@@ -36,14 +36,14 @@ CB = st.sidebar.checkbox("Auto-DL")
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2.5**](https://divyakarade-aidrugapp-covid-app-7v34bs.streamlit.app/) helps to build best Deep Learning model on users data."
+        "This module of [**AIDrugApp v1.2.5**](https://aidrugapp.streamlit.app/) helps to build best Deep Learning model on users data."
         " It also helps to predict target data using same deep learning algorithm.")
 
     expander_bar = st.expander("👉 More information")
     expander_bar.markdown("""
             * **Python libraries:** Tensorflow, AutoKeras, scikit-learn, streamlit, pandas, numpy, matplotlib
-            * **Publication:** 1. Divya Karade. (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. [ChemRxiv Preprint] (https://doi.org/10.33774/chemrxiv-2021-3f1f9).
-            2. Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo] (http://doi.org/10.5281/zenodo.4630119)
+            * **Publication:** 1. Divya Karade. (2021). Custom ML Module of AIDrugApp for Molecular Identification, Descriptor Calculation, and Building ML/DL QSAR Models. [ChemRxiv Preprint](https://doi.org/10.33774/chemrxiv-2021-3f1f9).
+            2. Divya Karade. (2021, March 23). AutoDL: Automated Deep Learning (Machine learning module of AIDrugApp - Artificial Intelligence Based Virtual Screening Web-App for Drug Discovery) (Version 1.0.0). [Zenodo](http://doi.org/10.5281/zenodo.4630119)
             """)
 
     expander_bar = st.expander("👉 How to use Auto-DL?")
