@@ -16,8 +16,8 @@ import math
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
 
 # For hiding streamlit messages
-st.set_option('deprecation.showPyplotGlobalUse', False)
-st.set_option('deprecation.showfileUploaderEncoding', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Create title and subtitle
 html_temp = """
