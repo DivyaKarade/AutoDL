@@ -45,6 +45,9 @@ Auto-DL or Automated Deep Learning is one of the machine learning module of <b>A
 
 AutoDL can be launched from here 👉 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/divyakarade/autodl/main/AutoDL.py)
 
+AutoDL can be launched from here 👉 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://autodl-b46u.onrender.com/)
+
+
 ### How to use Auto-DL?
 
 <b>Step 1:</b> On the "User Input Panel" first select AutoDL algorithm for building Deep Learning models
