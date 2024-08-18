@@ -35,7 +35,7 @@ CB = st.sidebar.checkbox("Auto-DL")
 if CB:
     st.title('Auto-DL')
     st.success(
-        "This module of [**AIDrugApp v1.2.5**](https://aidrugapp.streamlit.app/) helps to build the best Deep Learning model on user data."
+        "This module of [**AIDrugApp v1.2.6**](https://aidrugapp.streamlit.app/) helps to build the best Deep Learning model on user data."
         " It also helps to predict target data using the same deep learning algorithm.")
 
     expander_bar = st.expander("👉 More information")
