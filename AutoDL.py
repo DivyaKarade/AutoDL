@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
     confusion_matrix, precision_score, recall_score, f1_score, roc_auc_score
 )
-from autokeras import StructuredDataClassifier, StructuredDataRegressor
+from autokeras import TabularClassifier, TabularRegressor
 import matplotlib.pyplot as plt
 
 st.title("AutoKeras Tabular Data Modeling")
@@ -36,7 +36,7 @@ if uploaded_file is not None:
 
     # Model training
     if add_selectbox == 'Classification':
-        st.subheader("AutoKeras Structured Data Classification")
+        st.subheader("AutoKeras Tabular Classification")
 
         max_trials = st.sidebar.slider("Max Trials", 1, 100, 10)
         epochs = st.sidebar.slider("Epochs", 1, 100, 10)
@@ -45,7 +45,7 @@ if uploaded_file is not None:
         tf.random.set_seed(seed_number)
         np.random.seed(seed_number)
 
-        search = StructuredDataClassifier(max_trials=max_trials)
+        search = TabularClassifier(max_trials=max_trials)
         search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
         y_pred_train = search.predict(X_train)
@@ -87,7 +87,7 @@ if uploaded_file is not None:
         st.write(matrix)
 
     elif add_selectbox == 'Regression':
-        st.subheader("AutoKeras Structured Data Regression")
+        st.subheader("AutoKeras Tabular Regression")
 
         max_trials = st.sidebar.slider("Max Trials", 1, 100, 10)
         epochs = st.sidebar.slider("Epochs", 1, 100, 10)
@@ -96,7 +96,7 @@ if uploaded_file is not None:
         tf.random.set_seed(seed_number)
         np.random.seed(seed_number)
 
-        search = StructuredDataRegressor(max_trials=max_trials)
+        search = TabularRegressor(max_trials=max_trials)
         search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
         y_pred_train = search.predict(X_train)
