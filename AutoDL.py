@@ -10,6 +10,7 @@ import base64
 import io
 import matplotlib.pyplot as plt
 import math
+import sklearn.metrics  # Make sure to import this for regression metrics
 
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
@@ -113,7 +114,6 @@ if CB:
 
         if add_selectbox == 'Classification':
             if DA:
-                seed(seed_number)
                 tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
 
@@ -168,7 +168,6 @@ if CB:
 
         if add_selectbox == 'Regression':
             if DA:
-                seed(seed_number)
                 tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
 
