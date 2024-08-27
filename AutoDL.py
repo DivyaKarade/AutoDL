@@ -10,14 +10,14 @@ import base64
 import io
 import matplotlib.pyplot as plt
 import math
-import sklearn.metrics  # Make sure to import this for regression metrics
+import sklearn.metrics
 
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
 
 # For hiding streamlit messages
-#st.set_option('deprecation.showPyplotGlobalUse', False)
-#st.set_option('deprecation.showfileUploaderEncoding', False)
+# st.set_option('deprecation.showPyplotGlobalUse', False)
+# st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Create title and subtitle
 html_temp = """
@@ -96,26 +96,26 @@ if CB:
         st.write('Data Dimension: ' + str(data_1.shape[0]) + ' rows and ' + str(data_1.shape[1]) + ' columns.')
         st.write(data_1.style.highlight_max(axis=0))
 
-        # Data split
-        X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=(1 - split_size / 100),
-                                                            random_state=seed_number)
+        # Convert DataFrames to NumPy arrays
+        X_train, X_test, y_train, y_test = train_test_split(
+            X.to_numpy(), Y.to_numpy(), test_size=(1 - split_size / 100), random_state=seed_number)
 
         st.write('**Training set**')
-        Train = pd.concat([X_train, y_train], axis=1)
+        Train = pd.DataFrame(np.hstack([X_train, y_train.reshape(-1, 1)]), columns=data_1.columns)
         st.write('Data Dimension: ' + str(Train.shape[0]) + ' rows and ' + str(Train.shape[1]) + ' columns.')
         st.write(Train)
         st.download_button('Download CSV', Train.to_csv(index=False), 'Train.csv', 'text/csv')
 
         st.write('**Test set**')
-        Test = pd.concat([X_test, y_test], axis=1)
+        Test = pd.DataFrame(np.hstack([X_test, y_test.reshape(-1, 1)]), columns=data_1.columns)
         st.write('Data Dimension: ' + str(Test.shape[0]) + ' rows and ' + str(Test.shape[1]) + ' columns.')
         st.write(Test)
         st.download_button('Download CSV', Test.to_csv(index=False), 'Test.csv', 'text/csv')
 
         if add_selectbox == 'Classification':
             if DA:
-                tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
+                tf.random.set_seed(seed_number)
 
                 search = ImageClassifier(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
@@ -159,7 +159,7 @@ if CB:
                 st.write(matrix)
 
                 st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
+                prediction = search.predict(data.to_numpy())
                 data['Target_value'] = prediction
                 st.write(data)
                 st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
@@ -168,8 +168,8 @@ if CB:
 
         if add_selectbox == 'Regression':
             if DA:
-                tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
+                tf.random.set_seed(seed_number)
 
                 search = ImageRegressor(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
@@ -197,7 +197,7 @@ if CB:
                 st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_test, y_pred))
 
                 st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
+                prediction = search.predict(data.to_numpy())
                 data['Target_value'] = prediction
                 st.write(data)
                 st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
