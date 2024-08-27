@@ -113,7 +113,6 @@ if CB:
 
         if add_selectbox == 'Classification':
             if DA:
-                seed(seed_number)
                 tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
 
@@ -158,24 +157,16 @@ if CB:
                 matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
 
-                st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
-                data['Target_value'] = prediction
-                st.write(data)
-                st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
-
-                st.sidebar.warning('Prediction Created Successfully!')
-
-        if add_selectbox == 'Regression':
+        elif add_selectbox == 'Regression':
             if DA:
-                seed(seed_number)
                 tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
 
                 search = ImageRegressor(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
-                y_pred = search.predict(X_test)
+                y_pred_train = search.predict(X_train)
+                y_pred_test = search.predict(X_test)
 
                 model = search.export_model()
 
@@ -183,24 +174,36 @@ if CB:
                 st.write(model.summary())
 
                 st.info('**Model evaluation - Training Set**')
-                y_pred_train = search.predict(X_train)
-                st.write("\n")
-                st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_train, y_pred_train))
-                st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_train, y_pred_train))
-                st.write("Root mean squared error (RMSE): %f" % math.sqrt(sklearn.metrics.mean_squared_error(y_train, y_pred_train)))
-                st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_train, y_pred_train))
+                loss = search.evaluate(X_train, y_train, verbose=0)
+                st.write('Mean Squared Error: %.3f' % loss)
 
                 st.info('**Model evaluation - Test Set**')
-                st.write("\n")
-                st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_test, y_pred))
-                st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_test, y_pred))
-                st.write("Root mean squared error (RMSE): %f" % math.sqrt(sklearn.metrics.mean_squared_error(y_test, y_pred)))
-                st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_test, y_pred))
+                loss = search.evaluate(X_test, y_test, verbose=0)
+                st.write('Mean Squared Error: %.3f' % loss)
 
-                st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
-                data['Target_value'] = prediction
-                st.write(data)
-                st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
+                # Error Distribution
+                st.info('**Error Distribution - Test Set**')
+                Error = pd.DataFrame(y_test)
+                Error['Prediction'] = y_pred_test
+                Error['Error'] = Error['Prediction'] - Error.iloc[:, 0]
 
-                st.sidebar.warning('Prediction Created Successfully!')
+                st.write(Error)
+
+                st.info('**Plot of Prediction vs Real Value**')
+                plt.figure(figsize=(10, 6))
+                plt.scatter(y_test, y_pred_test)
+                plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red')
+                plt.xlabel('Real Value')
+                plt.ylabel('Prediction')
+                plt.title('Prediction vs Real Value')
+                st.pyplot(plt)
+
+                st.info('**Plot of Error Distribution**')
+                plt.figure(figsize=(10, 6))
+                plt.hist(Error['Error'], bins=25)
+                plt.xlabel('Prediction Error')
+                plt.ylabel('Count')
+                st.pyplot(plt)
+
+else:
+    st.info('Awaiting .csv file to be uploaded. A sample dataset is available in the sidebar.')
