@@ -1,6 +1,6 @@
 import pandas as pd
 import autokeras as ak
-from autokeras import StructuredDataClassifier, StructuredDataRegressor
+from autokeras import TextClassifier, TextRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, roc_auc_score, f1_score, confusion_matrix
 import numpy as np
@@ -117,7 +117,7 @@ if CB:
                 np.random.seed(seed_number)
                 tf.random.set_seed(seed_number)
 
-                search = StructuredDataClassifier(max_trials=max_trials)
+                search = TextClassifier(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
                 y_pred_train = search.predict(X_train)
@@ -171,7 +171,7 @@ if CB:
                 np.random.seed(seed_number)
                 tf.random.set_seed(seed_number)
 
-                search = StructuredDataRegressor(max_trials=max_trials)
+                search = TextRegressor(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
                 y_pred = search.predict(X_test)
