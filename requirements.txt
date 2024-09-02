@@ -6,7 +6,7 @@ keras-tuner==1.0.2
 pandas
 numpy
 regex
-tensorflow==2.2.0
+tensorflow==2.8.0
 #packaging
 
 
