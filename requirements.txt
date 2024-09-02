@@ -3,7 +3,7 @@ matplotlib
 autokeras
 scikit-learn
 keras-tuner
-pandas==1.2.3
+pandas
 regex
 
 
