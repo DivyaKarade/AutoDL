@@ -1,5 +1,5 @@
 streamlit
-matplotlib==3.3.4
+matplotlib
 autokeras
 scikit-learn==0.24.1
 keras-tuner
