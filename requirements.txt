@@ -6,7 +6,7 @@ keras-tuner
 pandas
 numpy
 regex
-#tensorflow==2.8.0
+tensorflow
 #packaging
 
 
