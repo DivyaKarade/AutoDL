@@ -6,7 +6,6 @@ keras-tuner
 pandas
 regex
 tensorflow==1.2.1
-keras=2.2.2
 
 
 
