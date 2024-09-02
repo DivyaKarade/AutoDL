@@ -1,13 +1,10 @@
 streamlit
-matplotlib
-autokeras==1.0.20  # specify the compatible version
-tensorflow==2.10.0
-scikit-learn
+matplotlib==3.3.4
+autokeras
+scikit-learn==0.24.1
 keras-tuner
-pandas
-numpy
+pandas==1.2.3
 regex
-#packaging
 
 
 
