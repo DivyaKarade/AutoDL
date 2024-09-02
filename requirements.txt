@@ -5,8 +5,8 @@ scikit-learn
 keras-tuner
 pandas
 regex
-tensorflow==2.17.0
-packaging
+#tensorflow==2.17.0
+#packaging
 
 
 
