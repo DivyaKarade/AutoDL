@@ -5,7 +5,6 @@ scikit-learn
 keras-tuner
 pandas
 regex
-tensorflow
 
 
 
