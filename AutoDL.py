@@ -11,6 +11,11 @@ import io
 import matplotlib.pyplot as plt
 import math
 from tensorflow.keras.layers import *
+from autokeras.auto_model import AutoModel
+from autokeras import blocks
+from autokeras.blocks.basic import BertBlock
+from autokeras import keras_layers
+from tensorflow.keras.layers.experimental import preprocessing
 
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
