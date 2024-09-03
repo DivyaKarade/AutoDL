@@ -2,7 +2,7 @@ import pandas as pd
 import autokeras as ak
 from autokeras import ImageClassifier, ImageRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import precision_score, recall_score, roc_auc_score, f1_score, confusion_matrix
+from sklearn.metrics import precision_score, recall_score, roc_auc_score, f1_score, confusion_matrix, mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
 import tensorflow as tf
 import streamlit as st
@@ -10,7 +10,7 @@ import base64
 import io
 import matplotlib.pyplot as plt
 import math
-from tensorflow.keras.layers RandomZoom, RandomFlip, RandomRotation 
+from tensorflow.keras.layers import RandomZoom, RandomFlip, RandomRotation 
 
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
@@ -114,9 +114,8 @@ if CB:
 
         if add_selectbox == 'Classification':
             if DA:
-                seed(seed_number)
-                tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
+                tf.random.set_seed(seed_number)
 
                 search = ImageClassifier(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
@@ -159,24 +158,21 @@ if CB:
                 matrix = confusion_matrix(y_test, y_pred_test)
                 st.write(matrix)
 
-                st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
-                data['Target_value'] = prediction
-                st.write(data)
-                st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
+                st.success("**Find out the model predictions using uploaded data **")
+                Predictions = pd.DataFrame(search.predict(data))
+                st.write(Predictions)
+                st.download_button('Download CSV', Predictions.to_csv(index=False), 'Predictions.csv', 'text/csv')
 
-                st.sidebar.warning('Prediction Created Successfully!')
-
-        if add_selectbox == 'Regression':
+        else:  # Regression
             if DA:
-                seed(seed_number)
-                tf.random.set_seed(seed_number)
                 np.random.seed(seed_number)
+                tf.random.set_seed(seed_number)
 
                 search = ImageRegressor(max_trials=max_trials)
                 search.fit(x=X_train, y=y_train, verbose=0, epochs=epochs)
 
-                y_pred = search.predict(X_test)
+                y_pred_train = search.predict(X_train)
+                y_pred_test = search.predict(X_test)
 
                 model = search.export_model()
 
@@ -184,24 +180,28 @@ if CB:
                 st.write(model.summary())
 
                 st.info('**Model evaluation - Training Set**')
-                y_pred_train = search.predict(X_train)
-                st.write("\n")
-                st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_train, y_pred_train))
-                st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_train, y_pred_train))
-                st.write("Root mean squared error (RMSE): %f" % math.sqrt(sklearn.metrics.mean_squared_error(y_train, y_pred_train)))
-                st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_train, y_pred_train))
+                loss, mse = search.evaluate(X_train, y_train, verbose=0)
+                st.write('Mean squared error: %.3f' % mse)
+                rmse = math.sqrt(mean_squared_error(y_train, y_pred_train))
+                st.write('Root mean squared error: %.3f' % rmse)
+                mae = mean_absolute_error(y_train, y_pred_train)
+                st.write('Mean absolute error: %.3f' % mae)
+                r2 = r2_score(y_train, y_pred_train)
+                st.write('R-squared: %.3f' % r2)
 
                 st.info('**Model evaluation - Test Set**')
-                st.write("\n")
-                st.write("Mean absolute error (MAE):      %f" % sklearn.metrics.mean_absolute_error(y_test, y_pred))
-                st.write("Mean squared error (MSE):       %f" % sklearn.metrics.mean_squared_error(y_test, y_pred))
-                st.write("Root mean squared error (RMSE): %f" % math.sqrt(sklearn.metrics.mean_squared_error(y_test, y_pred)))
-                st.write("R square (R^2):                 %f" % sklearn.metrics.r2_score(y_test, y_pred))
+                loss, mse = search.evaluate(X_test, y_test, verbose=0)
+                st.write('Mean squared error: %.3f' % mse)
+                rmse = math.sqrt(mean_squared_error(y_test, y_pred_test))
+                st.write('Root mean squared error: %.3f' % rmse)
+                mae = mean_absolute_error(y_test, y_pred_test)
+                st.write('Mean absolute error: %.3f' % mae)
+                r2 = r2_score(y_test, y_pred_test)
+                st.write('R-squared: %.3f' % r2)
 
-                st.success("**Find the Predicted Results below: **")
-                prediction = search.predict(data)
-                data['Target_value'] = prediction
-                st.write(data)
-                st.download_button('Download CSV', data.to_csv(index=False), 'data.csv', 'text/csv')
+                st.success("**Find out the model predictions using uploaded data **")
+                Predictions = pd.DataFrame(search.predict(data))
+                st.write(Predictions)
+                st.download_button('Download CSV', Predictions.to_csv(index=False), 'Predictions.csv', 'text/csv')
 
                 st.sidebar.warning('Prediction Created Successfully!')
