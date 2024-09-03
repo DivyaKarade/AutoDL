@@ -10,7 +10,6 @@ import base64
 import io
 import matplotlib.pyplot as plt
 import math
-from tensorflow.keras.layers.preprocessing import Normalization 
 
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
