@@ -2,11 +2,10 @@ streamlit
 matplotlib
 autokeras==1.0.19
 scikit-learn
-keras-tuner==1.1.2
+keras-tuner
 pandas
 regex
 tensorflow==2.16.1
-protobuf>=3.20.3,<5.0.0
 
 
 
