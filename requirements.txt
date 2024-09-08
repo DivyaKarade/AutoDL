@@ -1,6 +1,6 @@
 streamlit
 matplotlib
-autokeras==1.0.20
+autokeras==1.0.12
 scikit-learn
 keras-tuner
 pandas
